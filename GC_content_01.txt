@@ -1,0 +1,44 @@
+sequence = 'GTCTTATGCAGTTGACATAAGGATTGAAATATGCCCTGGTCTCCTGCAGTACCCTCAGGCTTGCTAGGATAGGGAAATTC'
+# Determine the sequence lenght
+sequence_lenght = len(sequence)
+# Declare a dictionary variable named d using d = dict() or dic = {}
+d = dict()
+#Start a for loop to go over every base value in the sequence
+for base in sequence:
+    d[base] = d.get(base,0) +1 
+# Removing identation meaning that all the loop iterations are completed
+# Printing our dictionary d that was populated with our loop
+print(d)
+
+# Extracting countc and countg from our dictionary d
+countc= d['C']
+countg= d['G']
+
+# Defining gc_percentage and at_percentage as float numbers with 2 decimal values
+gc_percentage = float(2)
+at_percentage = float(2)
+
+# Calculating GC content and at content
+gc_percentage = ((countc + countg) * 100) / sequence_lenght
+at_percentage = 100 - gc_percentage
+
+# Printing our results
+print ('GC content: ', gc_percentage, '%')
+print ('AT content: ', at_percentage, '%')
+
+#Visualizing our results with a bar chart using matplotlib in Pyhton
+import matplotlib.pyplot as plot
+# Defing x and y axis'values
+x = ['AT', 'CG']
+y = [at_percentage, gc_percentage]
+
+#Specify the bar colors and paterns
+colors = ['blue', 'yellow']
+hatches = ['x', '/']
+
+# Plotting the bar chart and adding labels
+plot.bar(x, y, color= colors, hatch=hatches)
+plot.xlabel('Base')
+plot.ylabel('Percentage')
+plot.title(f"GC Content: {gc_percentage}%") 
+plot.show()
